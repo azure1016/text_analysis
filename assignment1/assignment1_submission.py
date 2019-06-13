@@ -1,4 +1,5 @@
 import sys
+import pandas as pd
 
 import re
 import numpy as np
@@ -55,13 +56,18 @@ def pipeline(lines, save_path = "./"):
                delimiter=",", fmt='%s')
     np.savetxt(save_path + "test_no_stopword.csv", test_list_no_stopwords,
                delimiter=",", fmt='%s')
+    # for data in (train_list, test_list, val_list, train_list_no_stopword, test_list_no_stopword, val_list_no_stopword):
+    #     df = pd.DataFrame(data)
+    #     df.to_csv(data.__name__, sep = ",", index=False)
 
 if __name__ == "__main__":
-    input_path = sys.argv[1]
+    if len(sys.argv) > 1:
+        input_path = sys.argv[1]
+    else:input_path = "/Users/liujinjian/Documents/msci641/text_analysis/data/pos.txt"
     print(len(sys.argv))
     if len(sys.argv) > 2:
         save_path = sys.argv[2]
-    else:save_path = "./"
+    else:save_path = "/Users/liujinjian/Documents/msci641/text_analysis/assignment1/new_pos_gen/"
 
     """
     Tokenize the input file here
